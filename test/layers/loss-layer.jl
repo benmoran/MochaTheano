@@ -19,7 +19,7 @@ function test_theano_loss_layer(backend::Backend, T, eps)
 
   layer  = TheanoLossLayer(; bottoms=[:predictions, :labels],
                            eltype=T,
-                           loss=:( sum((predictions-labels)^2/2size(predictions,-1) ) ) )
+                           loss=:( sum((predictions-labels).^2./2size(predictions,-1) ) ) )
   pred_blob  = make_blob(backend, T, dims)
   label_blob = make_blob(backend, T, dims)
   diff_blob  = make_blob(backend, T, dims)

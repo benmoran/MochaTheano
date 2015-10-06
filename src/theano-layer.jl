@@ -113,7 +113,6 @@ function backward(backend::CPUBackend, state::TheanoLossLayerState,
   for (g, diff) in zip(state.gradients, diffs)
     if isa(diff, CPUBlob)
       # TODO Get theano to output to diffs directly without copying
-
       copy!(diff, g(in...))
     end
   end
